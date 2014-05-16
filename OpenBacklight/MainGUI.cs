@@ -18,6 +18,7 @@ namespace OpenBacklight
         public MainGUI()
         {
             InitializeComponent();
+            scanner.Start();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
