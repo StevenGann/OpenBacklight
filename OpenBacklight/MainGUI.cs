@@ -19,6 +19,8 @@ namespace OpenBacklight
         {
             InitializeComponent();
             scanner.Start();
+            scanner.SampleRate = 100;
+            scanner.SetSampleSize(10);
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -41,6 +43,20 @@ namespace OpenBacklight
             {
                 notifyIcon1.Visible = false;
             }
+        }
+
+        //Tick event handler for main timer
+        private void timerSample_Tick(object sender, EventArgs e)
+        {
+            previewPanel.BackColor = scanner.Output;
+
+        }
+
+        //Same as double-clicking the tray icon
+        private void contextMenuOptions_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }
