@@ -21,6 +21,8 @@ namespace OpenBacklight
             scanner.Start();
             scanner.SampleRate = 100;
             scanner.SetSampleSize(10);
+
+            labelSampleSize.Text = "Sample Size: 10";
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -57,6 +59,12 @@ namespace OpenBacklight
         {
             this.Show();
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void trackBarSampleSize_MouseUp(object sender, MouseEventArgs e)
+        {
+            labelSampleSize.Text = "Sample Size: " + Convert.ToString(trackBarSampleSize.Value);
+            scanner.SetSampleSize(trackBarSampleSize.Value);
         }
     }
 }
