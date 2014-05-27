@@ -52,6 +52,22 @@ namespace OpenBacklight
         {
             previewPanel.BackColor = scanner.Output;
 
+            string packet = Convert.ToString(scanner.Output.R) + "," + Convert.ToString(scanner.Output.G) + "," + Convert.ToString(scanner.Output.B);
+            label1.Text = "Current Output: (" + packet + ")";
+
+            try 
+            { 
+                if (!serialPort1.IsOpen)
+                {
+                    serialPort1.Open();
+                }
+                serialPort1.Write(packet); 
+            }
+            catch 
+            {
+                label1.Text = label1.Text + " COM Error"; 
+            }
+            
         }
 
         //Same as double-clicking the tray icon

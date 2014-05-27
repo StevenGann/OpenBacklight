@@ -38,6 +38,7 @@
             this.timerSample = new System.Windows.Forms.Timer(this.components);
             this.trackBarSampleSize = new System.Windows.Forms.TrackBar();
             this.labelSampleSize = new System.Windows.Forms.Label();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.trayContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSampleSize)).BeginInit();
             this.SuspendLayout();
@@ -106,6 +107,10 @@
             this.labelSampleSize.TabIndex = 3;
             this.labelSampleSize.Text = "Sample Size";
             // 
+            // serialPort1
+            // 
+            this.serialPort1.PortName = "COM52";
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,6 +141,7 @@
         private System.Windows.Forms.ToolStripMenuItem contextMenuOptions;
         private System.Windows.Forms.TrackBar trackBarSampleSize;
         private System.Windows.Forms.Label labelSampleSize;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 
