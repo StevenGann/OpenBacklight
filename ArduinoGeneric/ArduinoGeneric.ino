@@ -34,9 +34,9 @@ void loop()
 
 void readPacket()
 {
-    int Rnew = 0;
-    int Gnew = 0;
-    int Bnew = 0;
+    int Rnew = -1;
+    int Gnew = -1;
+    int Bnew = -1;
     
     while(Serial.available() > 0) //when there's information being received through serial go into this loop
     {
@@ -48,7 +48,7 @@ void readPacket()
     
     Serial.println(String(Rnew) + ", " + String(Gnew) + ", " + String(Bnew)); 
     
-    if (true)//(Rnew >= 0 && Rnew <= 255 && Gnew >= 0 && Gnew <= 255 && Bnew >= 0 && Bnew <= 255)
+    if (Rnew >= 0 && Rnew <= 255 && Gnew >= 0 && Gnew <= 255 && Bnew >= 0 && Bnew <= 255)
         {
             Rval = Rnew;
             Gval = Gnew;
