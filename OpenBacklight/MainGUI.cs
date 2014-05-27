@@ -54,12 +54,14 @@ namespace OpenBacklight
 
             string packet = Convert.ToString(scanner.Output.R) + "," + Convert.ToString(scanner.Output.G) + "," + Convert.ToString(scanner.Output.B);
             label1.Text = "Current Output: (" + packet + ")";
+            packet = packet + "/n";
 
             try 
             { 
                 if (!serialPort1.IsOpen)
                 {
                     serialPort1.Open();
+                    serialPort1.Write("T");
                 }
                 serialPort1.Write(packet); 
             }
@@ -81,6 +83,18 @@ namespace OpenBacklight
         {
             labelSampleSize.Text = "Sample Size: " + Convert.ToString(trackBarSampleSize.Value);
             scanner.SetSampleSize(trackBarSampleSize.Value);
+        }
+
+        private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
+        {
+            string line = serialPort1.ReadLine();
+            this.BeginInvoke(new LineReceivedEvent(LineReceived), line);
+        }
+
+        private delegate void LineReceivedEvent(string line);
+        private void LineReceived(string line)
+        {
+            textBoxSerialFeedback.Text = line;
         }
     }
 }

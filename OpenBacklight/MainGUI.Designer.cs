@@ -39,6 +39,8 @@
             this.trackBarSampleSize = new System.Windows.Forms.TrackBar();
             this.labelSampleSize = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.textBoxSerialFeedback = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.trayContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSampleSize)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +87,7 @@
             // timerSample
             // 
             this.timerSample.Enabled = true;
+            this.timerSample.Interval = 250;
             this.timerSample.Tick += new System.EventHandler(this.timerSample_Tick);
             // 
             // trackBarSampleSize
@@ -109,13 +112,33 @@
             // 
             // serialPort1
             // 
+            this.serialPort1.BaudRate = 115200;
             this.serialPort1.PortName = "COM52";
+            this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
+            // textBoxSerialFeedback
+            // 
+            this.textBoxSerialFeedback.Location = new System.Drawing.Point(12, 275);
+            this.textBoxSerialFeedback.Name = "textBoxSerialFeedback";
+            this.textBoxSerialFeedback.Size = new System.Drawing.Size(209, 20);
+            this.textBoxSerialFeedback.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(13, 256);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Serial Feedback";
             // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(233, 382);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxSerialFeedback);
             this.Controls.Add(this.labelSampleSize);
             this.Controls.Add(this.trackBarSampleSize);
             this.Controls.Add(this.label1);
@@ -142,6 +165,8 @@
         private System.Windows.Forms.TrackBar trackBarSampleSize;
         private System.Windows.Forms.Label labelSampleSize;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.TextBox textBoxSerialFeedback;
+        private System.Windows.Forms.Label label2;
     }
 }
 

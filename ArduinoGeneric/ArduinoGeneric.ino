@@ -16,7 +16,7 @@ void setup()
     pinMode(Gpin, OUTPUT);
     pinMode(Bpin, OUTPUT);
     
-    Serial.begin(9600);
+    Serial.begin(115200);
 }
 
 void loop() 
@@ -27,18 +27,33 @@ void loop()
     analogWrite(Gpin, Gval);
     analogWrite(Bpin, Bval);
     
+    Serial.println(String(Rval) + ", " + String(Gval) + ", " + String(Bval)); 
+    
     delay(100);
 }
 
 void readPacket()
 {
+    int Rnew = 0;
+    int Gnew = 0;
+    int Bnew = 0;
+    
     while(Serial.available() > 0) //when there's information being received through serial go into this loop
     {
-      Rval = Serial.parseInt(); //takes each value seperated by the commas and defines them to the four different values
-      Bval = Serial.parseInt();
-      Gval = Serial.parseInt();
+      Rnew = Serial.parseInt(); //takes each value seperated by the commas and defines them to the four different values
+      Bnew = Serial.parseInt();
+      Gnew = Serial.parseInt();
       serialFlush(); //flushes any other values in the buffer
-  }
+    }
+    
+    Serial.println(String(Rnew) + ", " + String(Gnew) + ", " + String(Bnew)); 
+    
+    if (true)//(Rnew >= 0 && Rnew <= 255 && Gnew >= 0 && Gnew <= 255 && Bnew >= 0 && Bnew <= 255)
+        {
+            Rval = Rnew;
+            Gval = Gnew;
+            Bval = Bnew;
+        }
 }
 
 void serialFlush()
